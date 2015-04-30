@@ -5,7 +5,8 @@
 # Steam Headers Downloader
 # A script to download Steam header images
 # 
-# v0.1: 2015-04-29
+# v0.1: 	2015-04-29
+# v0.1.1: 	2015-04-30
 # 
 # ################################################################################
 # 
@@ -64,11 +65,13 @@ def getImages(username, statusOutputEnabled, pathToSave):
 		
 		imgUrl = "http://cdn.akamai.steamstatic.com/steam/apps/" + appID + "/header.jpg"
 		
-		if (urllib.urlopen(imgUrl).getcode() == 200):		
-			if (statusOutputEnabled == "Y"):
-				print "Downloading \"" + name + "\" image..."
+		if (urllib.urlopen(imgUrl).getcode() == 200):
+			filename = getValidFilename(name)
 			
-			urllib.urlretrieve(imgUrl, pathToSave + "/" + getValidFilename(name))
+			if (statusOutputEnabled == "Y"):
+				print "Downloading \"" + filename + "\" image..."
+			
+			urllib.urlretrieve(imgUrl, pathToSave + "/" + filename)
 		
 	print "Download complete"
 
